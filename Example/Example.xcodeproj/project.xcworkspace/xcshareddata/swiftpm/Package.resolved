@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWPerpetualCalendar",
       "state" : {
-        "branch" : "main",
-        "revision" : "1393516b514e5c232472dc2aebfcd6acb04409fc"
+        "revision" : "295901735ea8b42f907d99dd4663fe3ff0ddf329",
+        "version" : "1.0.0"
       }
     },
     {

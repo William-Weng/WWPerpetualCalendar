@@ -40,15 +40,17 @@ extension ViewController: WWPerpetualCalendarDelegate {
     
     func willChangeViewController(firstDayOfMonth: Date?) {
         title = firstDayOfMonth?._localTime(with: .yearMonth)
+        myLabel.text = title
     }
     
     func didChangeViewController(firstDayOfMonth: Date?) {
         title = firstDayOfMonth?._localTime(with: .yearMonth)
+        myLabel.text = title
     }
     
     func didSelectItem(dates: [Date], at indexPath: IndexPath) {
         guard let selectedDate = dates[safe: indexPath.row] else { return }
-        myLabel.text = "\(selectedDate)"
+        myLabel.text = selectedDate._localTime(with: .short)
     }
     
     func changeViewController(error: WWOnBoardingViewController.OnBoardingError) {
