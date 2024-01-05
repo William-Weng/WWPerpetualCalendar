@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "wwonboardingviewcontroller",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/William-Weng/WWOnBoardingViewController.git",
+      "state" : {
+        "revision" : "e7e01369ac572261e1b71605ab5ee9ddc481a622",
+        "version" : "1.2.2"
+      }
+    },
+    {
+      "identity" : "wwperpetualcalendar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/William-Weng/WWPerpetualCalendar",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1393516b514e5c232472dc2aebfcd6acb04409fc"
+      }
+    },
+    {
+      "identity" : "wwprint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/William-Weng/WWPrint",
+      "state" : {
+        "revision" : "edb791ed5e59c0f4044810d21a89102a440e2fbd",
+        "version" : "1.2.1"
+      }
+    }
+  ],
+  "version" : 2
+}
