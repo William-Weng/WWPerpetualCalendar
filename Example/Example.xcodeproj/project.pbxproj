@@ -17,7 +17,6 @@
 		8130039227D5D19000436128 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8130039127D5D19000436128 /* Extension.swift */; };
 		813AB04C2B43A93A00AAE215 /* WWPerpetualCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 813AB04B2B43A93A00AAE215 /* WWPerpetualCalendar */; };
 		813AB0542B43DCA000AAE215 /* Protocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813AB0532B43DCA000AAE215 /* Protocol+.swift */; };
-		815B11CD2B47ADE200F78424 /* WWPerpetualCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 815B11CC2B47ADE200F78424 /* WWPerpetualCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +30,7 @@
 		8130038F27D5D18100436128 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8130039127D5D19000436128 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		813AB0532B43DCA000AAE215 /* Protocol+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Protocol+.swift"; sourceTree = "<group>"; };
+		81E1F2DA2B7EED0B00607C33 /* WWPerpetualCalendar */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = WWPerpetualCalendar; path = ../WWPerpetualCalendar; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,6 @@
 			files = (
 				3DAC9C1927016E78006663C2 /* WWPrint in Frameworks */,
 				813AB04C2B43A93A00AAE215 /* WWPerpetualCalendar in Frameworks */,
-				815B11CD2B47ADE200F78424 /* WWPerpetualCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +49,7 @@
 		3DBCD86726F198EF00522E3B = {
 			isa = PBXGroup;
 			children = (
+				81E1F2D92B7EED0B00607C33 /* Packages */,
 				3DBCD87226F198EF00522E3B /* Example */,
 				3DBCD87126F198EF00522E3B /* Products */,
 				813AB04A2B43A93A00AAE215 /* Frameworks */,
@@ -127,6 +127,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		81E1F2D92B7EED0B00607C33 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				81E1F2DA2B7EED0B00607C33 /* WWPerpetualCalendar */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,7 +154,6 @@
 			packageProductDependencies = (
 				3DAC9C1827016E78006663C2 /* WWPrint */,
 				813AB04B2B43A93A00AAE215 /* WWPerpetualCalendar */,
-				815B11CC2B47ADE200F78424 /* WWPerpetualCalendar */,
 			);
 			productName = Example;
 			productReference = 3DBCD87026F198EF00522E3B /* Example.app */;
@@ -178,7 +185,6 @@
 			mainGroup = 3DBCD86726F198EF00522E3B;
 			packageReferences = (
 				3DAC9C1727016E78006663C2 /* XCRemoteSwiftPackageReference "WWPrint" */,
-				815B11CB2B47ADE200F78424 /* XCRemoteSwiftPackageReference "WWPerpetualCalendar" */,
 			);
 			productRefGroup = 3DBCD87126F198EF00522E3B /* Products */;
 			projectDirPath = "";
@@ -431,14 +437,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		815B11CB2B47ADE200F78424 /* XCRemoteSwiftPackageReference "WWPerpetualCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/William-Weng/WWPerpetualCalendar";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -449,11 +447,6 @@
 		};
 		813AB04B2B43A93A00AAE215 /* WWPerpetualCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = WWPerpetualCalendar;
-		};
-		815B11CC2B47ADE200F78424 /* WWPerpetualCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 815B11CB2B47ADE200F78424 /* XCRemoteSwiftPackageReference "WWPerpetualCalendar" */;
 			productName = WWPerpetualCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */

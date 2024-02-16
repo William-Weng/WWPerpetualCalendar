@@ -12,7 +12,7 @@ let package = Package(
         .library(name: "WWPerpetualCalendar", targets: ["WWPerpetualCalendar"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/William-Weng/WWOnBoardingViewController.git", from: "1.2.2"),
+        .package(url: "https://github.com/William-Weng/WWOnBoardingViewController.git", from: "1.3.1"),
     ],
     targets: [
         .target(name: "WWPerpetualCalendar", dependencies: ["WWOnBoardingViewController"], resources: [.process("Storyboard")]),

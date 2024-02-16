@@ -116,6 +116,11 @@ extension WWPerpetualCalendar: WWOnBoardingViewControllerDelegate {
         return pageViewControllerArray
     }
     
+    public func infinityLoop(onBoardingViewController: WWOnBoardingViewController) -> WWOnBoardingViewController.InfinityLoopInformation {
+        let info: WWOnBoardingViewController.InfinityLoopInformation = (hasPrevious: true, hasNext: true)
+        return info
+    }
+    
     public func willChangeViewController(_ onBoardingViewController: WWOnBoardingViewController, currentIndex: Int, nextIndex: Int, pageRotateDirection: WWOnBoardingViewController.PageRotateDirection, error: WWOnBoardingViewController.OnBoardingError?) {
         willChangeViewControllerAction(onBoardingViewController: onBoardingViewController, currentIndex: currentIndex, nextIndex: nextIndex, pageRotateDirection: pageRotateDirection, error: error)
     }
@@ -173,7 +178,7 @@ private extension WWPerpetualCalendar {
     ///   - sender: Any?
     func initOnBoardingViewControllerSetting(for segue: UIStoryboardSegue, sender: Any?) {
         onBoardingViewController = segue.destination as? WWOnBoardingViewController
-        onBoardingViewController?.setting(onBoardingDelegate: self, isInfinityLoop: true, currentIndex: currentIndex)
+        onBoardingViewController?.setting(onBoardingDelegate: self, currentIndex: currentIndex)
     }
     
     /// 處理將要換頁的動作
