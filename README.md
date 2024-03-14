@@ -27,6 +27,7 @@ dependencies: [
 
 |函式|功能|
 |-|-|
+|build(baseDate:perpetualCalendarDelegate:)|建立WWPerpetualCalendar|
 |previousMonth(animated:completion:)|回上一個月|
 |nextMonth(animated:completion:)|到下一個月|
 |someMonth(selectDate:)|到某一個月|

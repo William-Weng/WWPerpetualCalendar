@@ -15,7 +15,7 @@ let package = Package(
         .package(url: "https://github.com/William-Weng/WWOnBoardingViewController.git", from: "1.3.1"),
     ],
     targets: [
-        .target(name: "WWPerpetualCalendar", dependencies: ["WWOnBoardingViewController"], resources: [.process("Storyboard")]),
+        .target(name: "WWPerpetualCalendar", dependencies: ["WWOnBoardingViewController"], resources: [.process("Storyboard"), .copy("Privacy")]),
     ],
     swiftLanguageVersions: [
         .v5
