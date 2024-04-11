@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import WWPrint
 
 final class WWPerpetualCalendarViewController: UIViewController {
 
