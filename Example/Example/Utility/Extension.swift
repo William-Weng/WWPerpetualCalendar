@@ -48,6 +48,29 @@ extension Date {
         
         return dateFormatter.string(from: self)
     }
+    
+    /// 時間其中一位的數值 => 年？月？日？
+    /// - Returns: Int
+    /// - Parameters:
+    ///   - component: 單位 => .day
+    ///   - calendar: 當地的日曆基準
+    func _component(_ component: Calendar.Component = .day, for calendar: Calendar = .current) -> Int {
+        return calendar.component(component, from: self)
+    }
+    
+    /// 取得當月的第一天
+    /// - Parameter calendar: 當地的日曆基準
+    /// - Returns: Date?
+    func _firstDayOfMonth(for calendar: Calendar = .current) -> Date? {
+        let dateComponents = calendar.dateComponents([.month, .year], from: self)
+        return calendar.date(from: dateComponents)
+    }
+    
+    /// [當天是當週的第幾天？](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/請問-swift-大大-今天星期幾-bf2935e33b6)
+    /// - 週日算第1天 / 週六算第7天
+    /// - Parameter calendar:C alendar
+    /// - Returns: Int
+    func _weekday(for calendar: Calendar = .current) -> Int { return self._component(.weekday) }
 }
 
 // MARK: - UIView (function)
@@ -69,7 +92,21 @@ extension UIView {
             trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
+    
+    /// 產生退色效果
+    /// - Parameter duration: CFTimeInterval
+    func _fadeEffect(_ duration: CFTimeInterval = 0.5) {
+        
+        let animation = CATransition()
+        
+        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        animation.type = .fade
+        animation.duration = duration
+        
+        layer.add(animation, forKey: CATransitionType.fade.rawValue)
+    }
 }
+
 
 // MARK: - UIViewController (function)
 extension UIViewController {

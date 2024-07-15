@@ -10,10 +10,11 @@ import WWOnBoardingViewController
 
 open class WWPerpetualCalendar: UIViewController {
     
+    /// 頁面的滑動方向
     enum PageRotateDirection {
-        case none
-        case left
-        case right
+        case none       // 不動
+        case left       // 向左
+        case right      // 向右
     }
     
     private weak var perpetualCalendarDelegate: WWPerpetualCalendarDelegate?
@@ -23,20 +24,21 @@ open class WWPerpetualCalendar: UIViewController {
     private var baseDate = Date()
     private var currentIndex = 1
     private var currentMonthOffset = 0
+    private var firstDayOfMonth: Date?
     private var onBoardingViewController: WWOnBoardingViewController?
     private var pageViewControllerArray: [WWPerpetualCalendarViewController] = []
     private var pageRotateDirection: PageRotateDirection = .none
     
-    open override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         initSetting(for: segue, sender: sender)
     }
 }
 
-// MARK: - 公開函式
+// MARK: - 公開函式 (public static function)
 public extension WWPerpetualCalendar {
     
     /// 建立WWPerpetualCalendar
@@ -53,9 +55,9 @@ public extension WWPerpetualCalendar {
     }
 }
 
-// MARK: - 公開函式
+// MARK: - 公開函式 (public function)
 public extension WWPerpetualCalendar {
-        
+    
     /// [手動移到上一個月](https://medium.com/@sharma17krups/onboarding-view-with-swiftui-b26096049be3)
     /// - Parameters:
     ///   - animated: [Bool](https://dev.to/domanovdev/swiftui-onboarding-view-1165)
@@ -85,23 +87,28 @@ public extension WWPerpetualCalendar {
         }
         
         self.currentMonthOffset = currentMonthOffset
-        perpetualCalendarDelegate?.didChangeViewController(firstDayOfMonth: firstDayOfMonth)
+        self.firstDayOfMonth = firstDayOfMonth
+        perpetualCalendarDelegate?.didChangeViewController(calendar: self, firstDayOfMonth: firstDayOfMonth, error: nil)
     }
 }
 
 // MARK: - PerpetualCalendarDelegate
 extension WWPerpetualCalendar: WWPerpetualCalendarViewControllerDelegate {
     
-    func perpetualCalendarItem(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, dates: [Date], firstDay: Date?) -> UICollectionViewCell {
+    func perpetualCalendarItem(_ collectionView: UICollectionView, dates: [Date], cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView._reusableCell(at: indexPath) as WWCalendarCollectionViewCell
-        cell.configure(with: indexPath, dates: dates, firstDay: firstDay)
+        cell.configure(with: indexPath)
+        
+        if let view = perpetualCalendarDelegate?.calendarItemView(collectionView: collectionView, dates: dates, viewForItemAt: indexPath, firstDayOfMonth: firstDayOfMonth) {
+            view._autolayout(on: cell)
+        }
         
         return cell
     }
     
-    func perpetualCalendar(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        perpetualCalendarDelegate?.didSelectItem(dates: WWCalendarCollectionViewCell.dates, at: indexPath)
+    func perpetualCalendar(_ collectionView: UICollectionView, dates: [Date], didSelectItemAt indexPath: IndexPath) {
+        perpetualCalendarDelegate?.didSelectItem(collectionView: collectionView, dates: dates, at: indexPath)
     }
     
     func perpetualCalendarBaseDate() -> Date {
@@ -110,22 +117,23 @@ extension WWPerpetualCalendar: WWPerpetualCalendarViewControllerDelegate {
 }
 
 // MARK: - WWOnBoardingViewControllerDelegate
-extension WWPerpetualCalendar: WWOnBoardingViewControllerDelegate {
+extension WWPerpetualCalendar: WWOnBoardingViewControllerDelegate {}
+public extension WWPerpetualCalendar {
     
-    public func viewControllers(onBoardingViewController: WWOnBoardingViewController) -> [UIViewController] {
+    func viewControllers(onBoardingViewController: WWOnBoardingViewController) -> [UIViewController] {
         return pageViewControllerArray
     }
     
-    public func infinityLoop(onBoardingViewController: WWOnBoardingViewController) -> WWOnBoardingViewController.InfinityLoopInformation {
+    func infinityLoop(onBoardingViewController: WWOnBoardingViewController) -> WWOnBoardingViewController.InfinityLoopInformation {
         let info: WWOnBoardingViewController.InfinityLoopInformation = (hasPrevious: true, hasNext: true)
         return info
     }
     
-    public func willChangeViewController(_ onBoardingViewController: WWOnBoardingViewController, currentIndex: Int, nextIndex: Int, pageRotateDirection: WWOnBoardingViewController.PageRotateDirection, error: WWOnBoardingViewController.OnBoardingError?) {
+    func willChangeViewController(_ onBoardingViewController: WWOnBoardingViewController, currentIndex: Int, nextIndex: Int, pageRotateDirection: WWOnBoardingViewController.PageRotateDirection, error: WWOnBoardingViewController.OnBoardingError?) {
         willChangeViewControllerAction(onBoardingViewController: onBoardingViewController, currentIndex: currentIndex, nextIndex: nextIndex, pageRotateDirection: pageRotateDirection, error: error)
     }
     
-    public func didChangeViewController(_ onBoardingViewController: WWOnBoardingViewController, finishAnimating finished: Bool, transitionCompleted completed: Bool, currentIndex: Int, nextIndex: Int, pageRotateDirection: WWOnBoardingViewController.PageRotateDirection, error: WWOnBoardingViewController.OnBoardingError?) {
+    func didChangeViewController(_ onBoardingViewController: WWOnBoardingViewController, finishAnimating finished: Bool, transitionCompleted completed: Bool, currentIndex: Int, nextIndex: Int, pageRotateDirection: WWOnBoardingViewController.PageRotateDirection, error: WWOnBoardingViewController.OnBoardingError?) {
         didChangeViewControllerAction(onBoardingViewController: onBoardingViewController, finishAnimating: finished, transitionCompleted: completed, currentIndex: currentIndex, nextIndex: nextIndex, pageRotateDirection: pageRotateDirection, error: error)
     }
 }
@@ -164,7 +172,11 @@ private extension WWPerpetualCalendar {
             page.calendarDelegate = self
             
             let firstDayOfMonth = page.reloadPerpetualCalendar(monthOffset: monthOffset)
-            if (monthOffset == currentMonthOffset) { perpetualCalendarDelegate?.didChangeViewController(firstDayOfMonth: firstDayOfMonth) }
+            
+            if (monthOffset == currentMonthOffset) {
+                self.firstDayOfMonth = firstDayOfMonth
+                perpetualCalendarDelegate?.didChangeViewController(calendar: self, firstDayOfMonth: firstDayOfMonth, error: nil)
+            }
             
             return page
         })
@@ -190,7 +202,7 @@ private extension WWPerpetualCalendar {
     ///   - error: WWOnBoardingViewController.OnBoardingError?
     func willChangeViewControllerAction(onBoardingViewController: WWOnBoardingViewController, currentIndex: Int, nextIndex: Int, pageRotateDirection: WWOnBoardingViewController.PageRotateDirection, error: WWOnBoardingViewController.OnBoardingError?) {
         
-        if let error = error { perpetualCalendarDelegate?.changeViewController(error: error); return }
+        if let error = error { perpetualCalendarDelegate?.willChangeViewController(calendar: self, firstDayOfMonth: nil, error: error); return }
         
         switch pageRotateDirection {
         case .right: currentMonthOffset += 1
@@ -199,8 +211,10 @@ private extension WWPerpetualCalendar {
         }
         
         let firstDayOfMonth = reloadPerpetualCalendar(with: nextIndex, monthOffset: currentMonthOffset)
+        
         self.currentIndex = currentIndex
-        perpetualCalendarDelegate?.willChangeViewController(firstDayOfMonth: firstDayOfMonth)
+        self.firstDayOfMonth = firstDayOfMonth
+        perpetualCalendarDelegate?.willChangeViewController(calendar: self, firstDayOfMonth: firstDayOfMonth, error: nil)
     }
     
     /// 處理換頁完成的動作
@@ -214,11 +228,13 @@ private extension WWPerpetualCalendar {
     ///   - error: WWOnBoardingViewController.OnBoardingError?
     func didChangeViewControllerAction(onBoardingViewController: WWOnBoardingViewController, finishAnimating finished: Bool, transitionCompleted completed: Bool, currentIndex: Int, nextIndex: Int, pageRotateDirection: WWOnBoardingViewController.PageRotateDirection, error: WWOnBoardingViewController.OnBoardingError?) {
         
-        if let error = error { perpetualCalendarDelegate?.changeViewController(error: error); return }
+        if let error = error { perpetualCalendarDelegate?.didChangeViewController(calendar: self, firstDayOfMonth: nil, error: error); return }
 
         let firstDayOfMonth = pageViewControllerArray[safe: currentIndex]?.firstDayOfMonth()
-        perpetualCalendarDelegate?.didChangeViewController(firstDayOfMonth: firstDayOfMonth)
+        
         self.currentIndex = currentIndex
+        self.firstDayOfMonth = firstDayOfMonth
+        perpetualCalendarDelegate?.didChangeViewController(calendar: self, firstDayOfMonth: firstDayOfMonth, error: nil)
     }
     
     /// 重新設定該Index頁面的資訊

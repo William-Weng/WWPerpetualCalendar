@@ -51,7 +51,7 @@ extension WWPerpetualCalendarViewController {
     /// 取得該月的第一天
     /// - Returns: Date?
     func firstDayOfMonth() -> Date? {
-        calendarDelegate?.perpetualCalendarBaseDate()._adding(component: .month, value: monthOffset)?._firstDayOfMonth()
+        return calendarDelegate?.perpetualCalendarBaseDate()._adding(component: .month, value: monthOffset)?._firstDayOfMonth()
     }
 }
 
@@ -61,10 +61,10 @@ extension WWPerpetualCalendarViewController: UICollectionViewDelegate, UICollect
     func numberOfSections(in collectionView: UICollectionView) -> Int { return 1 }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return dates.count }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = calendarDelegate?.perpetualCalendarItem(collectionView, cellForItemAt: indexPath, dates: dates, firstDay: firstDayOfMonth()) else { fatalError() }
+        guard let cell = calendarDelegate?.perpetualCalendarItem(collectionView, dates: dates, cellForItemAt: indexPath) else { fatalError() }
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { calendarDelegate?.perpetualCalendar(collectionView, didSelectItemAt: indexPath) }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { calendarDelegate?.perpetualCalendar(collectionView, dates: dates, didSelectItemAt: indexPath) }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

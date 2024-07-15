@@ -29,7 +29,7 @@ final class ViewController: UIViewController {
         perpetualCalendar.nextMonth(completion: nil)
     }
     
-    @IBAction func somePage(_ sender: UIButton) {
+    @IBAction func someMonth(_ sender: UIButton) {
         guard let date = Date()._adding(component: .month, value: Int.random(in: 5...10)) else { return }
         self.perpetualCalendar.someMonth(selectDate: date)
     }
@@ -38,23 +38,20 @@ final class ViewController: UIViewController {
 // MARK: - WWPerpetualCalendarDelegate
 extension ViewController: WWPerpetualCalendarDelegate {
     
-    func willChangeViewController(firstDayOfMonth: Date?) {
-        title = firstDayOfMonth?._localTime(with: .yearMonth)
-        myLabel.text = title
+    func calendarItemView(collectionView: UICollectionView, dates: [Date], viewForItemAt indexPath: IndexPath, firstDayOfMonth: Date?) -> UIView {
+        return cellViewMaker(collectionView: collectionView, dates: dates, viewForItemAt: indexPath, firstDayOfMonth: firstDayOfMonth)
     }
     
-    func didChangeViewController(firstDayOfMonth: Date?) {
-        title = firstDayOfMonth?._localTime(with: .yearMonth)
-        myLabel.text = title
+    func didSelectItem(collectionView: UICollectionView, dates: [Date], at indexPath: IndexPath) {
+        didSelectItemAction(collectionView: collectionView, dates: dates, at: indexPath)
     }
     
-    func didSelectItem(dates: [Date], at indexPath: IndexPath) {
-        guard let selectedDate = dates[safe: indexPath.row] else { return }
-        myLabel.text = selectedDate._localTime(with: .short)
+    func willChangeViewController(calendar: WWPerpetualCalendar, firstDayOfMonth: Date?, error: WWOnBoardingViewController.OnBoardingError?) {
+        willChangeViewControllerAction(calendar: calendar, firstDayOfMonth: firstDayOfMonth, error: error)
     }
     
-    func changeViewController(error: WWOnBoardingViewController.OnBoardingError) {
-        myLabel.text = "\(error)"
+    func didChangeViewController(calendar: WWPerpetualCalendar, firstDayOfMonth: Date?, error: WWOnBoardingViewController.OnBoardingError?) {
+        didChangeViewControllerAction(calendar: calendar, firstDayOfMonth: firstDayOfMonth, error: error)
     }
 }
 
@@ -66,5 +63,74 @@ private extension ViewController {
         let perpetualCalendar = WWPerpetualCalendar.build(perpetualCalendarDelegate: self)!
         self.perpetualCalendar = perpetualCalendar
         self._addChild(on: containerView, to: perpetualCalendar)
+    }
+    
+    /// 產生自定義的CellView
+    /// - Parameters:
+    ///   - collectionView: UICollectionView
+    ///   - dates: [Date]
+    ///   - indexPath: IndexPath
+    ///   - firstDayOfMonth: Date?
+    /// - Returns: UIView
+    func cellViewMaker(collectionView: UICollectionView, dates: [Date], viewForItemAt indexPath: IndexPath, firstDayOfMonth: Date?) -> UIView {
+        
+        guard let date = dates[safe: indexPath.row],
+              let firstDayOfMonth = firstDayOfMonth
+        else {
+            fatalError()
+        }
+        
+        let cellView = CellView()
+        cellView.configure(date: date, firstDayOfMonth: firstDayOfMonth)
+        
+        return cellView
+    }
+    
+    /// 點到該日期的反應
+    /// - Parameters:
+    ///   - collectionView: UICollectionView
+    ///   - dates: [Date]
+    ///   - indexPath: IndexPath
+    func didSelectItemAction(collectionView: UICollectionView, dates: [Date], at indexPath: IndexPath) {
+        
+        guard let selectedDate = dates[safe: indexPath.row] else { return }
+                
+        collectionView.visibleCells.forEach { cell in
+            
+            guard let cell = cell as? WWCalendarCollectionViewCell,
+                  let cellView = cell.subviews.last as? CellView
+            else {
+                return
+            }
+            
+            cellView.selectedView.isHidden = (cell.indexPath != indexPath) ? true : false
+        }
+        
+        myLabel.text = selectedDate._localTime(with: .short)
+    }
+    
+    /// 將要換頁的反應
+    /// - Parameters:
+    ///   - calendar: WWPerpetualCalendar
+    ///   - firstDayOfMonth: Date?
+    ///   - error: WWOnBoardingViewController.OnBoardingError?
+    func willChangeViewControllerAction(calendar: WWPerpetualCalendar, firstDayOfMonth: Date?, error: WWOnBoardingViewController.OnBoardingError?) {
+        
+        if let error = error { myLabel.text = "\(error)"; return }
+        myLabel.text = title
+    }
+    
+    /// 換頁完成的反應
+    /// - Parameters:
+    ///   - calendar: WWPerpetualCalendar
+    ///   - firstDayOfMonth: Date?
+    ///   - error: WWOnBoardingViewController.OnBoardingError?
+    func didChangeViewControllerAction(calendar: WWPerpetualCalendar, firstDayOfMonth: Date?, error: WWOnBoardingViewController.OnBoardingError?) {
+        
+        if let error = error { myLabel.text = "\(error)"; return }
+        
+        title = firstDayOfMonth?._localTime(with: .yearMonth)
+        myLabel._fadeEffect(0.5)
+        myLabel.text = title
     }
 }

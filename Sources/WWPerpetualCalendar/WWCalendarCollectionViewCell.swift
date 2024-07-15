@@ -8,37 +8,13 @@
 import UIKit
 
 // MARK: - 該月當日的CELL
-final class WWCalendarCollectionViewCell: UICollectionViewCell, CellReusable {
+open class WWCalendarCollectionViewCell: UICollectionViewCell, CellReusable {
     
-    @IBOutlet weak var myLabel: UILabel!
-    @IBOutlet weak var underLineView: UIView!
+    public var indexPath: IndexPath = []
     
-    static var dates: [Date] = []
+    public override func prepareForReuse() { self.subviews._removeFromSuperview() }
     
-    var indexPath: IndexPath = []
-    
-    func configure(with indexPath: IndexPath, dates: [Date], firstDay: Date?) {
-        
-        guard let date = dates[safe: indexPath.row],
-              let isEqual = firstDay?._compare(equal: date, with: .yearMonth)
-        else {
-            return
-        }
-        
-        var dayType: Constant.CalendarCellDayType = (!isEqual) ? .none : .general
-        
+    func configure(with indexPath: IndexPath) {
         self.indexPath = indexPath
-        Self.dates = dates
-        
-        myLabel.text = date._localTime(with: .day)
-
-        if (isEqual) {
-            let weekday = date._weekday()
-            if (weekday == 1) { dayType = .sunday }
-            if (weekday == 7) { dayType = .saturday }
-        }
-        
-        myLabel.textColor = dayType.color()
-        underLineView.backgroundColor = dayType.underLineColor()
     }
 }

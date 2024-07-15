@@ -38,6 +38,15 @@ extension Collection {
     func _index() -> Int { return count - 1 }
 }
 
+// MARK: - Collection (function)
+extension Collection where Self.Element: UIView {
+        
+    /// 將所有View移除
+    func _removeFromSuperview() {
+        self.forEach { $0.removeFromSuperview() }
+    }
+}
+
 // MARK: - Int (class function)
 extension Int {
     
@@ -135,6 +144,27 @@ extension Calendar {
         }
         
         return calendarDates
+    }
+}
+
+// MARK: - UIView (function)
+extension UIView {
+    
+    /// [設定LayoutConstraint => 不能加frame](https://zonble.gitbooks.io/kkbox-ios-dev/content/autolayout/intrinsic_content_size.html)
+    /// - Parameter view: [要設定的View](https://www.appcoda.com.tw/auto-layout-programmatically/)
+    func _autolayout(on view: UIView) {
+
+        removeFromSuperview()
+        view.addSubview(self)
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            topAnchor.constraint(equalTo: view.topAnchor),
+            bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
     }
 }
 

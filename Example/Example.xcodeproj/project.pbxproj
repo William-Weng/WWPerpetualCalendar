@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DAC9C1927016E78006663C2 /* WWPrint in Frameworks */ = {isa = PBXBuildFile; productRef = 3DAC9C1827016E78006663C2 /* WWPrint */; };
 		3DBCD87426F198EF00522E3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCD87326F198EF00522E3B /* AppDelegate.swift */; };
 		3DBCD87826F198EF00522E3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCD87726F198EF00522E3B /* ViewController.swift */; };
 		3DBCD87B26F198EF00522E3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCD87926F198EF00522E3B /* Main.storyboard */; };
 		3DBCD87D26F198F300522E3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCD87C26F198F300522E3B /* Assets.xcassets */; };
 		3DBCD88026F198F300522E3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCD87E26F198F300522E3B /* LaunchScreen.storyboard */; };
-		81033A982B7EEF0D00E21283 /* WWPerpetualCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 81033A972B7EEF0D00E21283 /* WWPerpetualCalendar */; };
 		8130039027D5D18100436128 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8130038F27D5D18100436128 /* Constant.swift */; };
 		8130039227D5D19000436128 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8130039127D5D19000436128 /* Extension.swift */; };
 		813AB04C2B43A93A00AAE215 /* WWPerpetualCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 813AB04B2B43A93A00AAE215 /* WWPerpetualCalendar */; };
-		813AB0542B43DCA000AAE215 /* Protocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813AB0532B43DCA000AAE215 /* Protocol+.swift */; };
+		814221262C45082F00FE9B6B /* WWPerpetualCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 814221252C45082F00FE9B6B /* WWPerpetualCalendar */; };
+		814221292C450F0700FE9B6B /* WWPerpetualCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 814221282C450F0700FE9B6B /* WWPerpetualCalendar */; };
+		818F21332C44C966002B3B5B /* WWPerpetualCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 818F21322C44C966002B3B5B /* WWPerpetualCalendar */; };
+		818F21352C44F677002B3B5B /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 818F21342C44F677002B3B5B /* CellView.xib */; };
+		818F21372C44F680002B3B5B /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818F21362C44F680002B3B5B /* CellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +32,8 @@
 		3DBCD88126F198F300522E3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8130038F27D5D18100436128 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8130039127D5D19000436128 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		813AB0532B43DCA000AAE215 /* Protocol+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Protocol+.swift"; sourceTree = "<group>"; };
+		818F21342C44F677002B3B5B /* CellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
+		818F21362C44F680002B3B5B /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,9 +41,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DAC9C1927016E78006663C2 /* WWPrint in Frameworks */,
 				813AB04C2B43A93A00AAE215 /* WWPerpetualCalendar in Frameworks */,
-				81033A982B7EEF0D00E21283 /* WWPerpetualCalendar in Frameworks */,
+				814221292C450F0700FE9B6B /* WWPerpetualCalendar in Frameworks */,
+				818F21332C44C966002B3B5B /* WWPerpetualCalendar in Frameworks */,
+				814221262C45082F00FE9B6B /* WWPerpetualCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +84,8 @@
 		3DBCD88726F1992200522E3B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				818F21362C44F680002B3B5B /* CellView.swift */,
+				818F21342C44F677002B3B5B /* CellView.xib */,
 				3DBCD87726F198EF00522E3B /* ViewController.swift */,
 			);
 			path = ViewController;
@@ -113,7 +119,6 @@
 		8130038E27D5D17800436128 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				813AB0532B43DCA000AAE215 /* Protocol+.swift */,
 				8130038F27D5D18100436128 /* Constant.swift */,
 				8130039127D5D19000436128 /* Extension.swift */,
 			);
@@ -144,9 +149,10 @@
 			);
 			name = Example;
 			packageProductDependencies = (
-				3DAC9C1827016E78006663C2 /* WWPrint */,
 				813AB04B2B43A93A00AAE215 /* WWPerpetualCalendar */,
-				81033A972B7EEF0D00E21283 /* WWPerpetualCalendar */,
+				818F21322C44C966002B3B5B /* WWPerpetualCalendar */,
+				814221252C45082F00FE9B6B /* WWPerpetualCalendar */,
+				814221282C450F0700FE9B6B /* WWPerpetualCalendar */,
 			);
 			productName = Example;
 			productReference = 3DBCD87026F198EF00522E3B /* Example.app */;
@@ -177,8 +183,7 @@
 			);
 			mainGroup = 3DBCD86726F198EF00522E3B;
 			packageReferences = (
-				3DAC9C1727016E78006663C2 /* XCRemoteSwiftPackageReference "WWPrint" */,
-				81033A962B7EEF0D00E21283 /* XCRemoteSwiftPackageReference "WWPerpetualCalendar" */,
+				814221272C450F0700FE9B6B /* XCRemoteSwiftPackageReference "WWPerpetualCalendar" */,
 			);
 			productRefGroup = 3DBCD87126F198EF00522E3B /* Products */;
 			projectDirPath = "";
@@ -194,6 +199,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				818F21352C44F677002B3B5B /* CellView.xib in Resources */,
 				3DBCD88026F198F300522E3B /* LaunchScreen.storyboard in Resources */,
 				3DBCD87D26F198F300522E3B /* Assets.xcassets in Resources */,
 				3DBCD87B26F198EF00522E3B /* Main.storyboard in Resources */,
@@ -208,7 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8130039227D5D19000436128 /* Extension.swift in Sources */,
-				813AB0542B43DCA000AAE215 /* Protocol+.swift in Sources */,
+				818F21372C44F680002B3B5B /* CellView.swift in Sources */,
 				3DBCD87826F198EF00522E3B /* ViewController.swift in Sources */,
 				3DBCD87426F198EF00522E3B /* AppDelegate.swift in Sources */,
 				8130039027D5D18100436128 /* Constant.swift in Sources */,
@@ -423,36 +429,31 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3DAC9C1727016E78006663C2 /* XCRemoteSwiftPackageReference "WWPrint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/William-Weng/WWPrint";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.0;
-			};
-		};
-		81033A962B7EEF0D00E21283 /* XCRemoteSwiftPackageReference "WWPerpetualCalendar" */ = {
+		814221272C450F0700FE9B6B /* XCRemoteSwiftPackageReference "WWPerpetualCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/William-Weng/WWPerpetualCalendar";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 1.0.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3DAC9C1827016E78006663C2 /* WWPrint */ = {
+		813AB04B2B43A93A00AAE215 /* WWPerpetualCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3DAC9C1727016E78006663C2 /* XCRemoteSwiftPackageReference "WWPrint" */;
-			productName = WWPrint;
-		};
-		81033A972B7EEF0D00E21283 /* WWPerpetualCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 81033A962B7EEF0D00E21283 /* XCRemoteSwiftPackageReference "WWPerpetualCalendar" */;
 			productName = WWPerpetualCalendar;
 		};
-		813AB04B2B43A93A00AAE215 /* WWPerpetualCalendar */ = {
+		814221252C45082F00FE9B6B /* WWPerpetualCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WWPerpetualCalendar;
+		};
+		814221282C450F0700FE9B6B /* WWPerpetualCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 814221272C450F0700FE9B6B /* XCRemoteSwiftPackageReference "WWPerpetualCalendar" */;
+			productName = WWPerpetualCalendar;
+		};
+		818F21322C44C966002B3B5B /* WWPerpetualCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WWPerpetualCalendar;
 		};

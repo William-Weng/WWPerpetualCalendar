@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -76,50 +76,9 @@
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lR3-bB-kdy">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lc0-dn-Vvg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023/01/01" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WyA-BM-xOo">
-                                                            <rect key="frame" x="42" y="4" width="82" height="20"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="xKb-Nk-3XH"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fm3-NX-QmE">
-                                                            <rect key="frame" x="2" y="124" width="124" height="2"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="2" id="pqI-wB-5iV"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="WyA-BM-xOo" secondAttribute="trailing" constant="4" id="41C-Gx-HlN"/>
-                                                        <constraint firstItem="fm3-NX-QmE" firstAttribute="leading" secondItem="Lc0-dn-Vvg" secondAttribute="leading" constant="2" id="Iph-Ty-MyY"/>
-                                                        <constraint firstAttribute="bottom" secondItem="fm3-NX-QmE" secondAttribute="bottom" constant="2" id="M4A-iV-JbQ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="fm3-NX-QmE" secondAttribute="trailing" constant="2" id="N0z-er-oij"/>
-                                                        <constraint firstItem="WyA-BM-xOo" firstAttribute="top" secondItem="Lc0-dn-Vvg" secondAttribute="top" constant="4" id="ddE-u0-UQ0"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstItem="Lc0-dn-Vvg" firstAttribute="top" secondItem="lR3-bB-kdy" secondAttribute="top" id="FpZ-bt-xDf"/>
-                                                <constraint firstAttribute="bottom" secondItem="Lc0-dn-Vvg" secondAttribute="bottom" id="H9j-na-91S"/>
-                                                <constraint firstItem="Lc0-dn-Vvg" firstAttribute="leading" secondItem="lR3-bB-kdy" secondAttribute="leading" id="PPc-Zl-9Kc"/>
-                                                <constraint firstAttribute="trailing" secondItem="Lc0-dn-Vvg" secondAttribute="trailing" id="Vvv-cn-TL3"/>
-                                            </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="myLabel" destination="WyA-BM-xOo" id="9ny-YY-cmu"/>
-                                            <outlet property="underLineView" destination="fm3-NX-QmE" id="k4i-AB-aVy"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
